@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 192.168.19.5
--- Tempo de geração: 28-Jan-2022 às 21:35
+-- Host: 127.0.0.1:3307
+-- Tempo de geração: 19-Set-2022 às 17:12
 -- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 8.1.1
+-- versão do PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,65 +18,52 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `teste`
+-- Banco de dados: `teste-qualita`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `correspondencias`
+-- Estrutura da tabela `usuarios`
 --
 
-CREATE TABLE `correspondencias` (
-  `id_correspondencia` int(11) UNSIGNED NOT NULL,
-  `empresa` varchar(35) NOT NULL,
-  `destinatario` varchar(35) NOT NULL,
-  `cep` varchar(8) NOT NULL,
-  `logradouro` varchar(40) NOT NULL,
-  `numero` varchar(6) NOT NULL,
-  `complemento` varchar(20) DEFAULT NULL,
-  `bairro` varchar(35) NOT NULL,
-  `municipio` varchar(50) NOT NULL,
-  `uf` varchar(2) NOT NULL,
-  `responsavel_envio` varchar(35) NOT NULL,
-  `tipo` int(11) NOT NULL,
-  `ar` text NOT NULL,
-  `data_envio` date NOT NULL,
-  `codigo_rastreio` varchar(25) NOT NULL,
-  `email_usuario` varchar(40) NOT NULL,
-  `data_criacao` date NOT NULL,
-  `data_alteracao` date NOT NULL
+CREATE TABLE `usuarios` (
+  `msisdn` varchar(14) NOT NULL,
+  `name` varchar(60) NOT NULL,
+  `access_level` varchar(25) NOT NULL,
+  `password` varchar(33) NOT NULL,
+  `external_id` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `correspondencias`
+-- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `correspondencias` (`id_correspondencia`, `empresa`, `destinatario`, `cep`, `logradouro`, `numero`, `complemento`, `bairro`, `municipio`, `uf`, `responsavel_envio`, `tipo`, `ar`, `data_envio`, `codigo_rastreio`, `email_usuario`, `data_criacao`, `data_alteracao`) VALUES
-(3, 'TIKS - TI', 'Luís', '18555200', 'Avenida João Francisco de Oliveira', '191', 'TESTE', 'Parque das Arvores', 'BOITUVA', 'PB', 'SISTEMA', 1, 'ABC123DEF456', '2022-01-19', '18555200ABC123DEF456', 'luis.trivinho@icloud.com', '2022-01-28', '2022-01-28'),
-(5, 'Ford', 'Creepy', '19856003', 'Avenida Bonnie Clyde', '300', '', 'Bahia', 'Jurerê', 'CE', 'SISTEMA', 3, 'Bom dia.', '2022-01-28', 'KAPPAKAPPAKAPPA', 'luis@icloud.coM', '2022-01-28', '2022-01-28'),
-(7, 'Netwish', 'Luís', '08007271', 'Av. Oswaldo Rossi', '150', 'Prédio', 'Jordanópolis', 'São Bernardo do Campo', 'SP', 'SISTEMA', 4, 'O Senhor é o meu pastor, e nada me faltará.', '2022-01-12', '54172369112', 'retrivinho@bol.com', '2022-01-28', '2022-01-28'),
-(8, 'Beatriz Company', 'Luís', '10123487', 'Rua Cesario Motta', '150', 'Casa 1 ', 'Centro', 'Cerquilho', 'SP', 'SISTEMA', 2, 'Olá, meu bem.', '2022-01-01', 'ABCEASYAS123', 'beatriz@gmai.com', '2022-01-28', '2022-01-28');
+INSERT INTO `usuarios` (`msisdn`, `name`, `access_level`, `password`, `external_id`) VALUES
+('+5515991046030', 'Luis', 'premium', '232059cb5361a9336ccf1b8c2ba7657a', 1),
+('+5515972670073', 'VIP', 'pro', 'b5f01c61ab57d9bfad247e56398aedce', 2),
+('+5515971386332', 'VIP', 'premium', 'b5f01c61ab57d9bfad247e56398aedce', 3),
+('+5511972670073', 'VIP', 'pro', 'b5f01c61ab57d9bfad247e56398aedce', 4);
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `correspondencias`
+-- Índices para tabela `usuarios`
 --
-ALTER TABLE `correspondencias`
-  ADD PRIMARY KEY (`id_correspondencia`);
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`external_id`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT de tabela `correspondencias`
+-- AUTO_INCREMENT de tabela `usuarios`
 --
-ALTER TABLE `correspondencias`
-  MODIFY `id_correspondencia` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `usuarios`
+  MODIFY `external_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
